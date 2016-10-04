@@ -1,0 +1,33 @@
+Definition
+	Array ist eine geordnete Liste, die verweise auf andere Objekte enthält. 
+
+Neues Array anlegen
+
+	seats = []
+	seats = Array.new
+	seats = ["Wert1", "Wert2"]
+	seats = %w(Wert1 Wert2)
+
+
+Werte hinzufügen
+
+	seats << "Wert3"
+	seats[3] = "Wert4"
+	seats.push("Wert5")
+
+
+Methoden von Arrays
+
+	.push()
+		Hinzufügen eines Wertes
+	.size 
+		Größe des Elements
+	.pop
+		 Löschen des letzten Wert
+	.insert(Index, "Wert") 
+		Setzt eine Wert auf genanntem index
+	.empty?
+		Löschen der Einträge
+	.delete_at(Index)
+		Löschen des Wertes am Index
+
