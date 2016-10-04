@@ -8,6 +8,9 @@ class Customer
 	def set_first(fname = " ")
 		@firstname = fname
 	end
+	def set_last(lname = "")
+		@lastname = lname
+	end
 
 	def set_street(str = " ")
 		@street = str
@@ -20,7 +23,7 @@ class Customer
 	def print_address
 		"Kunde:
 	Konto:#{@bank_account.rjust(20, '.')}
-	Nachname:#{@lastname.rjust(20, '.')}
+	Name:#{@lastname.rjust(20, '.')}
 	Vorname:#{@firstname.rjust(20, '.')}
 	Strasse:#{@street.rjust(20, '.')}
 	Ort:#{@city.rjust(20, '.')}"
