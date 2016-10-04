@@ -47,4 +47,5 @@ movies = [movie1, movie2, movie3]
 
 playlist1 = Playlist.new("Theo")
 playlist1.add_movie(movie1)
+playlist1.add_movie(movie2)
 playlist1.play
