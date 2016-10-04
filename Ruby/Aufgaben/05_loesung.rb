@@ -38,4 +38,16 @@ class Player
 end
 player1 = Player.new("Tom")
 player2 = Player.new("Horst")
-puts player1.name
+player3 = Player.new("Hans")
+
+#puts player1.name
+
+Players = [player1, player2, player3]
+
+puts "Es sind #{Players.size} Spieler angemeldet:"
+
+i = 1
+Players.each do |spieler|
+	puts "Spieler #{i} heißt #{spieler.name}"
+	i += 1
+end
