@@ -1,4 +1,5 @@
-#a. erstellen Sie eine Klasse Game mit einem Konstruktor, der eine Instanzvariable title anlegt und fuellt und ein leeres Array mit dem Name Player enthaelt.
+#a. erstellen Sie eine Klasse Game mit einem Konstruktor, der eine Instanzvariable title anlegt und
+#  fuellt und ein leeres Array mit dem Name Player enthaelt.
 #b. die Klasse Game hat eine Methode add_player der ein SPieler hinzugefuegt wird
 #c. eine Methode play erzeugt folgenden Ausdruck:
 #	There are 3 players in Knuckleheads: 
@@ -17,4 +18,77 @@
 #	Curly got w00ted!
 #	Curly got w00ted!
 #I'm Curly with a health of 145 and a score of 150.
+class Game
+		def initialize(title)
+			@title = title
+			@Player = []
+		end
+		def add_player(player)
+			@Player << player
+		
+		end
+		def play
+			puts "There are #{@Player.size} Players in #{@title}\n"
 
+				@Player.each do |player|
+					puts player.say_hello
+				end
+				@Player.each do |player|
+					puts player.blam
+					puts player.woot
+					puts player.woot
+					puts player.say_hello
+				end
+		end
+end
+
+
+
+
+class Player
+	
+	
+	def initialize(name, health=100) 
+		@name = name
+		@health = health
+		
+	end
+
+	def say_hello
+		"I'm #{@name} with a health of #{@health} and a score of #{score}"
+	end
+
+
+
+	def blam
+			@health -= 10
+				if @health <= 0
+					@health = 0
+						"#{@name} got blamed"
+					
+				else
+					"#{@name} got blamed"
+		end
+	end
+
+	def woot
+		@health += 10
+			"#{@name} got wooted"
+	end
+
+	def score
+		@health + @name.length
+	end
+
+
+end
+
+
+player1 = Player.new("Hans",24)
+player2 = Player.new("Max",12)
+
+
+Game1 = Game.new("Game")
+Game1.add_player(player1)
+Game1.add_player(player2)
+Game1.play
