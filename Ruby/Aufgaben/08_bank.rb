@@ -29,43 +29,58 @@
 #c. Fügen Sie eine Eigenschaft kredit hinzu, auf die lesend und schreibend zugegriffen werden kann.
 #	 Speichern Sie für das bestehende Objekt in der Eigenschaft kredit den Wert 5000. 
 
-class Kredit
-
-	attr_accessor :kredit
-
-	def initialize(kunde, jahresgehalt)
-		@kunde = kunde
-		@Jahresgehalt = jahresgehalt
-	end
-
-	def get_kunde
-		puts "#{@kunde.get_kunden_daten} Jahresgehalt: #{@Jahresgehalt}"
-	end
-end
-
 class Kunde
 
 	attr_accessor :name, :gehalt
 	attr_writer :adresse
 
 
-		def initialize(vorname="", name="")
-			@name = "#{vorname} ".capitalize + "#{name}".capitalize
+		def initialize(name)
+			@name = name
 		end
 
-		def get_kunden_daten
+
+		def adresse
 			"#{@name}, #{@adresse}."
 		end
 end
+class Kredit
 
-kunde1 = Kunde.new("Theo", "Sommer")
+	attr_accessor :kredit
+
+	def initialize(kunde)
+		@kunde = kunde
+	end
+
+	def kunde
+		puts "#{@kunde.adresse} Jahresgehalt: #{@kunde.gehalt * 12}"
+	end
+end
+
+kunde1 = Kunde.new("Theo Sommer")
 kunde1.name = "Theo Sonnenschein"
-puts kunde1.name
-kunde1.gehalt = "2000"
+#puts kunde1.name
+kunde1.gehalt = 2000
 kunde1.adresse = "Hermelinweg 11, 22159 Hamburg"
 
-puts kunde1.get_kunden_daten
+#puts kunde1.adresse
 
-kredit1 = Kredit.new(kunde1, "24000")
-kredit1.get_kunde
+kredit1 = Kredit.new(kunde1)
+#kredit1.kunde
 kredit1.kredit = "5000"
+
+
+#methode um alle teile eines Strings großzuschrieben
+str = "a b c"
+str_array = str.split
+ret = ""
+str_array.each do |teilstring|
+	ret = ret + " " + teilstring.capitalize
+end
+# ret.strip
+
+
+
+
+
+

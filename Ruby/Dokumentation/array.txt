@@ -31,3 +31,45 @@ Methoden von Arrays
 	.delete_at(Index)
 		Löschen des Wertes am Index
 
+Iterations-Methoden:
+
+	var.each
+		Methode zum druchlaufen der einzelnen Elemente
+
+	var.select
+		Methode, die im Block einen boolschen Wert erwartet und bei true den Inhalt zurückgibt
+		var.select {|v| v.size > 1 }
+
+	var.reject
+		opposite von select
+
+	var.sort
+		gibt ein sortiertes Array zurück
+
+	3. times {puts "irgendwas"}
+		#gibt 3 * "irgendwas" aus
+
+	numbers = (1..10).to_a
+		#erstellt ein Array von 1-10
+	
+	var = numbers.select {|n| n > 4}
+		#speichern von 5 6 7 8 9 10 in var
+	
+	var = numbers.select {|n| n.even?}
+		#alle gerade Zahlen aus numbers werden in var gespeichert
+	
+	var = numbers.reject {|n| n.even?}
+		#dreht die select methode um. so werden alle ungeraden Zahlen in var gepeichert
+	
+	evens, odd = numbers.partition { |n| n.even? }
+		#teilt das Ergebnis in die Arrays evens und odd auf. In even werden die positiven Ergebnisse der Abfrage 2 4 6 usw gespeichert und in odd die negativen ergebnisse 1 3 5 usw. 
+	
+	names = %w(anhalten gehen sitzen)
+		# macht ein Array aus den 3 angaben
+	
+	puts names.sort_by {|n| n.length}
+		#sortiert das array nach der kürzesten Länge abwärts also wäre gehen an Array postion 0
+	
+	puts names.sort_by {|n| n.length}.reverse
+		#dreht das Ergebnis um
+
