@@ -26,3 +26,15 @@ Kurzform der if Anweisung:
 	end
 
 	Steht am Ende einer Anweisung (in der gleichen zeile) eine if_Bedigung, dann wird die vorgehende Anweisung(z.B.: Zuordnung eines Wertes) nur ausgeführt, wenn die bedigung true ist. 
+
+Ternärer Operator:
+	Es gibt die Möglichkeit einen if else Block in einer Zeile auszuführen:
+		puts car.typ.empty? ? "Kein Wert" : car.typ
+
+	Die Anweisung puts, also erzeugen einer Ausgabe, bekommt den Wert "Kein Wert" falls die Bedingung 
+	erfüllt ist; bzw. den aktuellen Objekt Wert für typ falls dieser vorhanden ist.
+
+	Das freistehende Fragezeichen ist ein Operator der die linksstehende bedingung von den 
+	auszuführenden Anweisungen trennt. 
+	Der Doppelpunkt fungiert als die Kurzform von 'else'
+	

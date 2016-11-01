@@ -8,12 +8,27 @@ mit ruby <Dateiname>
 
 1. erstelllen sie eine klasse Car mit den Eigenschaften: ps, typ, verbrauch
 2. Das Fahrzeug kan Beschleunigen, die Methode Beschleunigen bekommt einen Parameter zeit, 
-der die sekundenzahl des Beschleunigungsvorgangs enthählt. Ausgegeben wird die erreichte Geschwindigkeit in km/h. Die Geschwindkeit wird errechnet aus PS mal Sekunden geteilt durch 100 und ergibt die Einheit meter/sekunden. 
-3. legen Sie 3 Objekte von dieser Klasse an
-4. Speichern Sie die Objekte in einem Array
-5. Lassen Sie das Array durchlaufen geben Sie den Typ aus
-6. erstelen Sie eine Ausgabe: sortiert nach PS
-
+der die sekundenzahl des Beschleunigungsvorgangs enthählt. Ausgegeben wird die erreichte 
+Geschwindigkeit in km/h. Die Geschwindkeit wird errechnet aus PS mal Sekunden geteilt durch 100 und 
+ergibt die Einheit meter/sekunden. 
+3. erstellen sie einen Konstruktor, der für die Eigenschaft ps einen Wert erwartet, für die 
+Eigenschaft optional eine initialisierung ermöglicht
+4. legen Sie 3 Objekte von dieser Klasse an Objekt1 ps = 200 typ='Klaumich';Objekt2 ps = 80 typ '
+hauni'; Objekt 3 = 100PS
+5. Speichern Sie die Objekte in einem Array
+   Lassen Sie das Array durchlaufen geben Sie den Typ aus, wenn kein Typ angegeben ist soll "Kein 
+   Wert" ausgegeben werden.
+6. Legen Sie drei weitere Objekte von der Klasse Car an. Die Daten stehen in einem hash, wobei die 
+erste Position die den Typ und die zweite Postion PS
+enthält: vals = { 'BMW'	=> 200, 'trabbi' => 150, 'Honda'=> 20}. Lassen Sie den Hash durchlaufen, 
+erzeugen jeweils ein Car Objekt und legen dieses im Array cars2 ab.
+7. Erstellen Sie eine Klasse 'Driver'. mit der Eigenschaft "name" die im Konstrukor gesetzt werden 
+muss.
+Es gibt ein Array cars, dass im Konstruktor initialisiert wird.
+Es gibt eine methode add_cars mit der für das Driver Objekt ein fahrzeug hinzugefügt werden kann.
+Es gibt eine Ausgabe show_cars die die Fahrzeuge mit der typenbezeichnung auflistet.
+Legen Sie ein Objekt Theo an und fügen Sie von den car arrays jeweils das erste dem Driver Objekt zu.
+Lassen Sie die Daten der zugeordneten Fahrzeuge ausgeben. 
 __________________________
 	elsif = else if
 
