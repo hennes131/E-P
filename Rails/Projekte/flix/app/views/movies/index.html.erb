@@ -1,6 +1,10 @@
 <h1>Movies</h1>
 <ul>
 	<%@movies.each do |movie| %>
-		<li><%= movie %></li>
+		<li>
+		<%= movie.title %>
+		Bewertung: <%= movie.rating %>,
+		Kosten: <%= movie.total_gross %>
+		</li>
 	<%end %>
 </ul>
