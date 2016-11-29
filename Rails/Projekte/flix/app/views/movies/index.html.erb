@@ -1,10 +1,13 @@
-<h1>Movies</h1>
+<h1>Movie</h1>
+
 <ul>
-	<%@movies.each do |movie| %>
+	<% @movies.each do |movie| %>
 		<li>
-		<%= movie.title %>
-		Bewertung: <%= movie.rating %>,
-		Kosten: <%= movie.total_gross %>
+			Titel: <%= movie.title %>,
+			Bewertung: <%= movie.rating %>,
+			Produktionskosten: <%= movie.total_gross %>
+			Bemerkung: <%= movie.description %>
+			Herausgekommen am: <%= movie.released_on %>
 		</li>
-	<%end %>
+	<% end %>
 </ul>
