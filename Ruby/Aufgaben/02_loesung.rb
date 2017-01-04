@@ -13,8 +13,9 @@ Players:
 "
 allenamen = <<array1zu1
 Players:
+#{name2}
 	#{name1}
-		#{name2}
-			#{name3}
+	
+	#{name3}
 array1zu1
 puts allenamen

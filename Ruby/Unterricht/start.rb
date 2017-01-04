@@ -1,13 +1,20 @@
-def movie_listing(movie, rank=5)
-	"Movie: #{movie} ist ein guter Film, mit der Punktzahl: #{rank} am #{set_time}"
-	
-end
-def method_name
-	
-end
-def set_time
-	Time.now.strftime("%d.%m.%Y")
-	
-end
-puts movie_listing(ARGV[0], ARGV[1])
-
+name1 = "larry"
+health = 60
+name2 = "curly"
+name3 = "moe"
+puts "#{name1}’s health is #{health}
+#{name1}’s health is #{health * 3}
+#{name1}’s health is #{(health / 9.0).round(2)}
+#{name1}’s health is #{health / 9}
+Players:
+\t#{name1}
+\t#{name2}
+\t#{name3}
+"
+allenamen = <<array1zu1
+Players:
+#{name1}
+#{name2}
+#{name3}
+array1zu1
+puts allenamen
