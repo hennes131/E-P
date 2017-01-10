@@ -27,3 +27,18 @@ d.h. Ruby-klassen in denen Tabelen neu angelegt oder verändert werden können.
 Diese Migrations müssen mit einem seperaten Befehl zur Datenbank gesendet werden:
 	
 	rake db:migrate
+
+Beziehungen:
+	1:n - In der untergeordneten Tabelle sind beliebig viele Elemente einem Element in der Haupttabelle zugeordnet.
+	Beispiel: Ein Event hat beliebig viele Teilnehmer.
+
+	Eine Beziehung wird in ActiveRecord über eine Definition in der Model-Klasse hergestellt:
+
+	class event
+		has_many :members
+
+	class member
+		belongs_to :event
+
+	Durch diese Zuordnung werden beim Starten des Rails-Server eine Vielzahl von Funktionen erstellt,
+	die es ermöglichen über die eine Klasse auf die korrespondierende zuzugreifen.
