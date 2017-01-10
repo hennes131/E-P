@@ -5,5 +5,6 @@ module BooksHelper
 			i=i+f.quality
 		end
 		e=i/book.likes.count
+		
 	end
 end
