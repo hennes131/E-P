@@ -1,6 +1,6 @@
 module BooksHelper
 	def mittel(book)
-		if book.likes.count > 0 then
+		if book.likes.count > 0 
 			i=0
 			book.likes.each do |f|
 				i=i+f.quality
