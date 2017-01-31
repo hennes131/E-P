@@ -3,7 +3,7 @@
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">RAILS APP</li>
       <li><%= link_to 'Projekte', root_path %></li>
-      <li><a href="#">Three</a></li>
+      <li><%= link_to 'Users', users_path if current_user %></a></li>
     </ul>
   </div>
   <div class="top-bar-right">
