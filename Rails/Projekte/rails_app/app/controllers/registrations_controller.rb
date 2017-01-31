@@ -1,6 +1,7 @@
 class RegistrationsController < ApplicationController
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
   before_action :set_event
+  before_action :require_signin, except: [:index]
   # GET /registrations
   # GET /registrations.json
   def index
@@ -66,7 +67,7 @@ class RegistrationsController < ApplicationController
     def set_registration
       @registration = Registration.find(params[:id])
     end
-    
+   
     def set_event
       @event = Event.find(params[:event_id])
     end
