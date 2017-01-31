@@ -2,12 +2,12 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @registration.name %>
+  <%= @registration.user.name %>
 </p>
 
 <p>
   <strong>Email:</strong>
-  <%= @registration.email %>
+  <%= @registration.user.email %>
 </p>
 
 <p>
@@ -16,4 +16,5 @@
 </p>
 
 <%= link_to 'Edit', edit_event_registration_path(@event.id, @registration.id) %> |
+
 <%= link_to 'Back', event_registration_path(@event.id) %>
