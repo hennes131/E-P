@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 		@events = Event.all
 	end
 	def show
-		
+		@likers = @event.likers
 	end
 	def new
 		@event = Event.new

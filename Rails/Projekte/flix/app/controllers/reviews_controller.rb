@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_movie
     before_action :require_signin
+  before_action :require_equal_user, only: [:edit, :update, :destroy]
   # GET /reviews
   # GET /reviews.json
   def index

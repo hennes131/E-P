@@ -8,4 +8,23 @@
 <h3>Bemerkung</h3>
 <p><%= @movie.description %></p>
 
+<p>
+	<% if favorit = Favorit.where(user_id: current_user.id, movie_id: @movie.id).first %>
+		<%= link_to 'no_fav', movie_favorit_path(@movie.id, favorit.id), method: :delete, class: 'button alert' %>
+	<% else %>
+		<%= button_to 'Fav', movie_favorits_path(@movie), class: 'button' %>
+	<% end %>
+</p>
+<% if @favoriters.any? %>
+	<h3>Leute die das toll finden:</h3>
+	<p>
+		<ul>
+				<% @favoriters.each do |user| %>
+					<li><%= user.name %></li>
+				<% end %>
+		</ul>
+	</p>
+<% end %>
+
+
 <p><%= link_to "Alle Movies anzeigen", movies_path %></p>

@@ -9,6 +9,16 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<% if @favorited_movies.any? %>
+	<h3>Favorit Movies</h3>
+	<p>
+		<ul>
+				<% @favorited_movies.each do |movie| %>
+					<li><%= movie.title %></li>
+				<% end %>
+		</ul>
+	</p>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

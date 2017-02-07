@@ -6,14 +6,18 @@ class MoviesController < ApplicationController
 		@movies=Movie.all
 	end
 	def show
-		
+		@favoriters = @movie.favoriters
 	end
 	def new
 		@movie = Movie.new
 	end
 	def create
 		@movie = Movie.create(movie_params)
-		redirect_to movies_path
+		if @event.save 
+			redirect_to movies_path
+		else
+			render :new 
+		end
 	end
 	def edit
 		
@@ -27,6 +31,7 @@ class MoviesController < ApplicationController
 		@movie.destroy
 		redirect_to movies_path
 	end
+	
 	private 
 		def set_movie
 			@movie = Movie.find(params[:id])
