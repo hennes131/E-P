@@ -1,0 +1,124 @@
+In der MOVIE - App hat die Einführung des Users als eigenständige Tabelle die Auswirkung, dass die Review-Tabelle zur JOIN-Tabelle wird.
+Programmieren Sie die AUswirkungen.
+
+
+Beim Anlegen einer Bewertung muss der User eingeloggt sein.
+
+	Review Conroller
+	    before_action :require_signin
+
+	Application Controller
+  	def require_signin 
+   		unless current_user
+    			redirect_to new_session_url, alert: "Please sign in first!!"
+   		end
+  	end
+
+
+In der MOVIE-App soll der Benutzer die Möglichkeit bekommen einen FIlm zu favorisieren.
+
+Eine Resource favorite wird erstellt und eine m:n Beziehung zwischen movie und user hergestellt.
+Die movie-Beziehung wird fans, die user-Beziehung favorite_movies genannt.
+
+Auf der show-Seite eines Movie werden die Fans angezeigt.
+AUf der show-Seite eines Users werdenen die Favorite_Movies angezeigt.
+
+	Konsole:
+		1. rails g resource favorit movie:references user:references
+		2. (bundle exec) rake db:migrate
+	routes.rb
+		...
+		resources :movies do
+  			resources :favorits
+			...
+		...
+	model/user.rb
+		...		
+		has_many :reviews, :dependent => :destroy
+  		has_many :favorits, dependent: :destroy
+  		has_many :favorited_movies, through: :favorits, source: :movie 
+		...
+	model/movie.rb
+		...
+		has_many :favorits, dependent: :destroy
+		has_many :favoriters, through: :favorits, source: :user
+		...
+	model/favorit.rb
+		...
+		belongs_to :movie
+  		belongs_to :user
+		...
+	controller/favorit
+		...
+		def create
+			@movie = Movie.find(params[:movie_id])
+			@movie.favorits.create(user_id: current_user.id)
+			redirect_to @movie, notice: "Film zu Favoriten hinzugefügt"
+		end
+		def destroy
+			@Favorit = Favorit.find(params[:id])
+			@Favorit.delete
+			redirect_to movie_path(params[:movie_id]), alert: "Film gefällt dir wohl nicht mehr"
+		end
+		...
+	controller/movie
+		...
+		def show
+			@favoriters = @movie.favoriters
+		end
+		...
+	controller/user
+		...
+		def show
+			@favorited_movies = @user.favorited_movies
+		end
+		...
+	views/movie_show
+		...
+		<p>
+			<% if favorit = Favorit.where(user_id: current_user.id, movie_id: @movie.id).first %>
+				<%= link_to 'no_fav', movie_favorit_path(@movie.id, favorit.id), method: :delete, class: 'button alert' %>
+			<% else %>
+				<%= button_to 'Fav', movie_favorits_path(@movie), class: 'button' %>
+			<% end %>
+		</p>
+		<% if @favoriters.any? %>
+			<h3>Leute die das toll finden:</h3>
+			<p>
+				<ul>
+					<% @favoriters.each do |user| %>
+						<li><%= user.name %></li>
+					<% end %>
+				</ul>
+			</p>
+		<% end %>
+		...
+	views/user_show
+		...
+		<% if @favorited_movies.any? %>
+			<h3>Favorit Movies</h3>
+			<p>
+				<ul>
+					<% @favorited_movies.each do |movie| %>
+						<li><%= movie.title %></li>
+					<% end %>
+				</ul>
+			</p>
+		<% end %>
+		...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

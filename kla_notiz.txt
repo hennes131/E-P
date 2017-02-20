@@ -1,0 +1,119 @@
+1. a)
+	rails g scaffold project title description:text start_date:datetime
+b)
+	rake db:migrate
+c)
+	Project.create(title: "Prüfungsvorbereitung EuP", description: "Alles was für EuP zu lernen ist", start_date: "2017-04-01")
+	Project.create(title: "Facharbeit", description: "Planen, Durchführen, Beschreiben eines Themas", start_date: "2017-02-01")
+d)
+	views/index von Projects
+		<h1><%= "#{@projects.count}"" Project".pluralize(@projects.count) %></h1>
+e)
+	view/index in der each-do schleife
+		<td><%= truncate(project.description, length: 10) %></td>
+f)
+	config/initializers neue Datei time_formats.rb erstellen mit dem Inhalt
+		Time::DATE_FORMATS[:default] = "%d.%m.%Y %H:%M"
+g)
+	model/projects in der Methode 
+		validates :title, presence:true
+	einfügen
+h)
+	<gestrichen da im Unterricht nicht behandelt>
+i)
+	In der Konsole
+		rails g migration AddFieldsToProjects end_date:datetime
+j)
+	rake db:migrate
+k)
+	Index Datei:
+		<th>End date</th>
+		in der schleife
+			<td><%= project.end_date %></td>
+		hinzufügen
+	Show Datei:
+		<p>
+			<strong>End date:</strong>
+  			<%= @project.end_date %>
+		</p>
+	_form Partial (für edit und new)
+		<div class="field">
+    			<%= f.label :end_date %>
+    			<%= f.datetime_select :end_date %>
+  		</div>
+l)
+	Im Private Bereich die folgenden Methode entsprechend anpassen 
+		def project_params
+      			params.require(:project).permit(:title, :description, :start_date, :end_date)
+    		end
+2. 
+	rails g scaffold iterations title description:text start_date:datetime end_date:datetime project:references
+a)
+	Untergeordnetes (Iteration-)model mit
+		belongs_to :project
+	versehen
+	Übergeordnetes (Project-)Model mit
+		has_many :iterations
+	versehen
+b)	
+	resources :projects do
+  		resources :iterations
+  	end
+c)
+	Am Anfang der Klasse 
+		before_action :set_project
+	hinzufügen
+	und im private- Bereich die zugehörige Methode definieren
+		def set_project
+		      @project = Project.find(params[:project_id])
+		end
+d)
+	in der views/Index von Projects in der each-do folgende Zeile hinzufügen
+		<td><%= link_to 'Iterations', project_iterations_path(project) %></td>
+	
+	des Weiteren auf der views/index Seite der Iterations die Links wie folgt ändern:
+		...
+        	<td><%= link_to 'Show', project_iteration_path(@project.id, iteration.id) %></td>
+        	<td><%= link_to 'Edit', edit_project_iteration_path(@project.id, iteration.id) %></td>
+        	<td><%= link_to 'Destroy', project_iteration_path(@project.id, iteration.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		...
+		<%= link_to 'New Iteration', new_project_iteration_path(@project.id) %>
+e)
+	e=Project.last
+	e.iterations.create(title: "Literatur sichten", description: "Alle über das Thema zusammensuchen", start_date: "2017-02-01", end_date: "2017-02-10")
+f)
+	...
+	<h1>Iterations für Project: <%= "#{@project.title}" %></h1>
+	...
+       	<td><%= link_to 'Show', project_iteration_path(@project.id, iteration.id) %></td>
+       	<td><%= link_to 'Edit', edit_project_iteration_path(@project.id, iteration.id) %></td>
+       	<td><%= link_to 'Destroy', project_iteration_path(@project.id, iteration.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	...
+	<%= link_to 'New Iteration', new_project_iteration_path(@project.id) %>
+g)
+	Im Controller der Iterations entsprechend ändern
+		...		
+		def index
+			@iterations = @project.iterations
+		end
+		...	
+  		def new
+    			@iteration = @project.iterations.new 
+  		end
+		...	  	
+		def create
+    			@iteration = @project.iterations.new (iteration_params) 
+
+    			respond_to do |format|
+      				if @iteration.save
+        			format.html { redirect_to project_iterations_path(@project.id, @iteration.id),...
+		...
+		def update
+    			respond_to do |format|
+      				if @iteration.update(iteration_params)
+        			format.html { redirect_to project_iterations_path(@project.id, @iteration.id),...
+		...
+h)
+	Das _form Partial der Iteration am Anfang ändern, siehe:
+		<%= form_for([@project,@iteration]) do |f| %>
+

@@ -1,0 +1,36 @@
+Im Unterricht 16.01\par\vspace{1cm}\noindent
+\begin{enumerate}
+\item In der Konsole buch und like erstellen 
+\begin{lstlisting}
+rails c
+e=New.Book
+...
+e.save
+	oder
+e=Book.create(title: "Steve", ...)
+e.likes.create(quality: 2)
+\end{lstlisting}
+\item Spalten einer Tabelle ändern
+\begin{lstlisting}
+Neue Spalte in der Likes Tabelle
+	rails g migration AddFieldToLikes description:text
+
+Spaltentyp ändern (von integer zu string)
+	rails g migration ChangeTableLike
+
+Jetzt die migration Datei öffnen und dort in der def change 
+	def change
+		change_column :likes, :description, :string		
+	end
+eintragen
+
+Spaltenname ändern
+	rails g migration ChangeTableLike
+
+Jetzt die Migration datei öffnen und dort in der def change
+	def change
+		rename_column :likes, :description, :beschreibung
+	end
+eintragen
+\end{lstlisting}
+\end{enumerate}
